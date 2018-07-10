@@ -2,7 +2,7 @@
   "name": "mmorpg_got",
   "version": "1.0.0",
   "description": "mmorpg got",
-  "repository": "",
+  "repository": "https://github.com/GUIKAR741/mmorpg_got",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,7 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "consign": "^0.1.6",
-    "ejs": "^2.5.2",
+    "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-validator": "^5.2.0",
     "mongodb": "^3.1.1"
