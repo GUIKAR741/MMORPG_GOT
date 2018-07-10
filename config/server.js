@@ -28,10 +28,11 @@ app.use(expressValidator());
 
 /* efetua o autoload das rotas, dos models e dos controllers para o objeto app */
 consign()
-	.include('app/routes')
-	.then('app/models')
-	.then('app/controllers')
-	.into(app);
+    .include('app/routes')
+    .then('app/models')
+    .then('app/controllers')
+    .then('config/dbConnection.js')
+    .into(app);
 
 /* exportar o objeto app */
 module.exports = app;
