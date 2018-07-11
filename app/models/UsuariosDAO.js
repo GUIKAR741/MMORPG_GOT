@@ -4,10 +4,32 @@ function UsuariosDao(connection) {
 UsuariosDao.prototype.inserirUsuario = function(usuario, res) {
     let dados = {
         operacao: "inserir",
-        usuario: usuario,
+        dado: usuario,
         collection: "usuarios",
         callback: function(err, result) {
-            res.send("olá Marilene");
+            if(err){
+                console.log(err);
+            }
+        }
+    };
+    this._connection(dados);
+};
+UsuariosDao.prototype.autenticar= function(usuario, req,res) {
+    let dados = {
+        operacao: "selecionar",
+        dado: usuario,
+        collection: "usuarios",
+        callback: function(err, result) {
+            if(err){
+                console.log(err);
+            }
+            if(result[0]!==undefined){
+                req.session.autorizado=true;
+                req.session.usuario=result[0].usuario;
+                req.session.casa=result[0].casa;
+            }
+            if(req.session.autorizado)res.redirect("jogo");
+            else res.render('index',{validacao: {},dadosForm:{}});
         }
     };
     this._connection(dados);
