@@ -1,7 +1,9 @@
+let cryto=require('crypto');
 function UsuariosDao(connection) {
     this._connection=connection;
 }
 UsuariosDao.prototype.inserirUsuario = function(usuario, res) {
+    usuario.senha=cryto.createHash('md5').update(usuario.senha).digest('hex');
     let dados = {
         operacao: "inserir",
         dado: usuario,
@@ -15,6 +17,7 @@ UsuariosDao.prototype.inserirUsuario = function(usuario, res) {
     this._connection(dados);
 };
 UsuariosDao.prototype.autenticar= function(usuario, req,res) {
+    usuario.senha=cryto.createHash('md5').update(usuario.senha).digest('hex');
     let dados = {
         operacao: "selecionar",
         dado: usuario,
