@@ -6,7 +6,7 @@ const dbName = "got";
 var connMongoDB = function(dados) {
     mongo.connect(url,{useNewUrlParser:true}, function(err, client) {
         assert.equal(null, err);
-        console.log("Connected successfully to server");
+        // console.log("Connected successfully to server");
         const db = client.db(dbName);
         query(db, dados);
         client.close();
@@ -21,7 +21,11 @@ function query(db, dados) {
         case "selecionar":
             collection.find(dados.dado).toArray(dados.callback);
             break;
-        default:
+        case "atualizar":
+            collection.updateOne(dados.campo, dados.alterar,dados.callback);
+            break;
+        case "deletar":
+            collection.deleteOne(dados.dado,dados.callback);
             break;
     }
 }
